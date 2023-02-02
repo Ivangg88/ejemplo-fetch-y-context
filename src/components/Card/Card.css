@@ -1,0 +1,46 @@
+.card-container {
+  align-self: center;
+  width: 100%;
+  min-height: 250px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+img {
+  transition: 1000ms;
+  align-self: center;
+  width: 80%;
+}
+
+span {
+  width: 100%;
+  text-align: start;
+}
+
+img:hover {
+  transform: scale(1.1);
+  border: none;
+}
+
+.button-container {
+  padding: 10px;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+button:hover {
+  transform: scale(1.2);
+}
+
+.card-container__title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-container__title span:nth-child(2) {
+  text-align: end;
+}

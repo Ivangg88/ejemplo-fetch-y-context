@@ -53,22 +53,24 @@ ul {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 0;
-  gap: 20px;
+  padding: 20px;
+  gap: 30px;
+  list-style: none;
 }
 
 li {
-  align-self: center;
-  width: 80%;
-  border: 1px solid black;
-  list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
+  align-content: center;
+  justify-content: center;
+  max-width: 300px;
+  padding: 20px;
+  border: 2px solid palevioletred;
 }
 
-span {
-  width: 100%;
-  text-align: start;
+li:nth-child(odd) {
+  background-color: #61dafb;
+}
+
+li:nth-child(even) {
+  background-color: pink;
 }

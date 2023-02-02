@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import "./App.css";
+import { Card } from "./components/Card/Card";
 
 import { useArticles } from "./hooks/useArticles";
 import { deleteArticlesActionCreator } from "./store/actions/articlesActions/articlesActions";
 import ArticleContext from "./store/ArticleContext/ArticleContext";
+import { tarjeta } from "./util/datos";
 
 export interface Productos {
   id: string;
@@ -16,12 +18,8 @@ export interface Productos {
 
 function App() {
   const { articles, dispatch } = useContext(ArticleContext);
-  const { getData } = useArticles();
 
-  // const getData = useCallback(async () => {
-  //   const { data } = await axios.get("https://fakestoreapi.com/products");
-  //   setArticulos(data);
-  // }, []);
+  const { getData } = useArticles();
 
   const handleData = () => {
     getData("https://fakestoreapi.com/products");
@@ -31,27 +29,7 @@ function App() {
     dispatch(deleteArticlesActionCreator());
   };
 
-  return (
-    <>
-      <div>
-        <button onClick={handleData}>Get data</button>
-        <button onClick={handleDelete}>Delete all</button>
-
-        <ul>
-          {articles.map((objeto) => (
-            <li key={objeto.id}>
-              <img src={objeto.image} alt="" width={50} />
-              <span>{objeto.id} </span>
-              <span>{objeto.title}</span>
-              <span>{objeto.description} </span>
-              <span>{objeto.category} </span>
-              <span>{objeto.price} €</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
-  );
+  return <Card article={tarjeta}></Card>;
 }
 
 export default App;
