@@ -20,7 +20,7 @@ const Header = () => {
       </button>
 
       {open && (
-        <div className="navigation-bar">
+        <nav className="navigation-bar">
           {!isLogged ? (
             <NavLink to={"/login"} title="Login">
               Login
@@ -37,7 +37,7 @@ const Header = () => {
           <NavLink to={"/register"}> Register</NavLink>
 
           <NavLink to="/">Home</NavLink>
-        </div>
+        </nav>
       )}
     </>
   );

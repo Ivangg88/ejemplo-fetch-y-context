@@ -1,15 +1,16 @@
 import axios from "axios";
-import { useCallback, useContext } from "react";
-import { addArticlesActionCreator } from "../store/actions/articlesActions/articlesActions";
-import ArticleContext from "../store/ArticleContext/ArticleContext";
+import { useCallback } from "react";
+import { useAppDispatch } from "../app/hooks";
+import { loadArticlesActionCreator } from "../store/articles/articlesSlice";
 
 export const useArticles = () => {
-  const { dispatch } = useContext(ArticleContext);
+  const dispatch = useAppDispatch();
   const getData = useCallback(
     async (url: string) => {
       try {
         const { data, status } = await axios.get(url);
-        dispatch(addArticlesActionCreator(data));
+        console.log(data);
+        dispatch(loadArticlesActionCreator(data));
 
         console.log(status);
       } catch (error) {

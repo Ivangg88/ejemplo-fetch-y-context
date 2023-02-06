@@ -1,16 +1,13 @@
 import { useContext } from "react";
 import { Routes, Route, Navigate, NavLink } from "react-router-dom";
 import "./App.css";
-import { useAppSelector } from "./app/hooks";
+import { useAppDispatch, useAppSelector } from "./app/hooks";
 import Header from "./components/BurgerMenu/BurgerMenu";
 import { Card } from "./components/Card/Card";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Register/Register";
-
 import { useArticles } from "./hooks/useArticles";
-import { deleteArticlesActionCreator } from "./store/actions/articlesActions/articlesActions";
-import ArticleContext from "./store/ArticleContext/ArticleContext";
-import { tarjeta } from "./util/datos";
+import { deleteArticlesActionCreator } from "./store/articles/articlesSlice";
 
 export interface Productos {
   id: string;
@@ -22,8 +19,9 @@ export interface Productos {
 }
 
 function App() {
-  const { articles, dispatch } = useContext(ArticleContext);
+  const articles = useAppSelector((state) => state.articles);
   const { email } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
 
   const { getData } = useArticles();
 
@@ -60,7 +58,7 @@ function App() {
                 {<span>{email ? `User: ${email}` : "No logged"}</span>}
                 <button onClick={handleData}>Get data</button>
                 <button onClick={handleDelete}>Delete data</button>
-                {articles && list}
+                {articles.length ? list : ""}
               </div>
             }
           />
