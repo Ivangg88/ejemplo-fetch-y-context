@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase/firebase";
@@ -7,7 +7,6 @@ import { auth } from "../../Firebase/firebase";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigator = useNavigate();
 
   const loginHandler = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -62,7 +61,7 @@ export const Login = () => {
       </form>
       <p>
         Don't have an account yet?
-        <button onClick={() => navigator("/register")}></button>
+        <NavLink to="/login"> Login</NavLink>
       </p>
     </div>
   );

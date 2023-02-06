@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, NavLink } from "react-router-dom";
 import "./App.css";
+import Header from "./components/BurgerMenu/BurgerMenu";
 import { Card } from "./components/Card/Card";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Register/Register";
@@ -34,9 +35,27 @@ function App() {
 
   return (
     <div>
+      <Header />
       <Routes>
+        <Route path="/" element={<Navigate to={"/home"} />} />
+        <Route
+          path="/home"
+          element={
+            <div>
+              <h1>Home</h1>
+            </div>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="*"
+          element={
+            <div>
+              <h1>Página no encontrada</h1> <NavLink to={"/"}>Go Home</NavLink>
+            </div>
+          }
+        />
       </Routes>
     </div>
   );

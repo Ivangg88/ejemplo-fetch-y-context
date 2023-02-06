@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./BurgerMenu.css";
-function Header() {
+
+const Header = () => {
   const [open, setOpen] = useState(false);
 
   const handleClick = () => {
@@ -15,13 +17,17 @@ function Header() {
 
       {open && (
         <div>
-          <a href="#">Home</a>
-          <a href="#">Create</a>
-          <a href="#">My list</a>
+          <NavLink to={"/login"} title="Login">
+            Login
+          </NavLink>
+
+          <NavLink to={"/register"}> Register</NavLink>
+
+          <NavLink to="/">Home</NavLink>
         </div>
       )}
     </>
   );
-}
+};
 
 export default Header;

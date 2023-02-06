@@ -1,12 +1,11 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../Firebase/firebase";
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Register = (): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigator = useNavigate();
 
   const registerHandler = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -59,7 +58,7 @@ const Register = (): JSX.Element => {
 
       <p>
         Have an account yet?
-        <button onClick={() => navigator("/login")}></button>
+        <NavLink to="/register">Register</NavLink>
       </p>
     </div>
   );
