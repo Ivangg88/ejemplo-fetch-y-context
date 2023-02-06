@@ -1,4 +1,4 @@
-div {
+.navigation-bar {
   width: 150px;
   background-color: aliceblue;
   display: flex;
@@ -6,6 +6,6 @@ div {
   align-items: center;
 }
 
-button {
+.burger {
   all: unset;
 }

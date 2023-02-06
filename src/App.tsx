@@ -33,31 +33,48 @@ function App() {
     dispatch(deleteArticlesActionCreator());
   };
 
+  const list: JSX.Element = (
+    <ul>
+      {articles.map((article) => (
+        <li key={article.id}>
+          <Card article={article} />
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <div>
+    <>
+      {" "}
       <Header />
-      <Routes>
-        <Route path="/" element={<Navigate to={"/home"} />} />
-        <Route
-          path="/home"
-          element={
-            <div>
-              <h1>Home</h1>
-            </div>
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="*"
-          element={
-            <div>
-              <h1>Página no encontrada</h1> <NavLink to={"/"}>Go Home</NavLink>
-            </div>
-          }
-        />
-      </Routes>
-    </div>
+      <div style={{ width: "100vh" }}>
+        <Routes>
+          <Route path="/" element={<Navigate to={"/home"} />} />
+          <Route
+            path="/home"
+            element={
+              <div>
+                <h1>Home</h1>
+                <button onClick={handleData}>Get data</button>
+                <button onClick={handleDelete}>Delete data</button>
+                {articles && list}
+              </div>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="*"
+            element={
+              <div>
+                <h1>Página no encontrada</h1>{" "}
+                <NavLink to={"/"}>Go Home</NavLink>
+              </div>
+            }
+          />
+        </Routes>
+      </div>
+    </>
   );
 }
 

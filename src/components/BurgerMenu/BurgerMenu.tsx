@@ -11,12 +11,12 @@ const Header = () => {
 
   return (
     <>
-      <button onClick={handleClick}>
+      <button className="burger" onClick={handleClick}>
         {open ? "iconocCerrar" : "iconoMenu"}
       </button>
 
       {open && (
-        <div>
+        <div className="navigation-bar">
           <NavLink to={"/login"} title="Login">
             Login
           </NavLink>
