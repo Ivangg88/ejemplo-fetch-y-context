@@ -42,7 +42,7 @@ const Register = (): JSX.Element => {
 
       <p>
         Have an account yet?
-        <NavLink to="/register">Register</NavLink>
+        <NavLink to="/login">Login</NavLink>
       </p>
     </div>
   );

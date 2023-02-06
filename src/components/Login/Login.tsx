@@ -41,7 +41,7 @@ export const Login = () => {
       </form>
       <p>
         Don't have an account yet?
-        <NavLink to="/login"> Login</NavLink>
+        <NavLink to="/register"> Register</NavLink>
       </p>
     </div>
   );
