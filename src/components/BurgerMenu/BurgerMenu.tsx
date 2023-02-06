@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <>
       <button className="burger" onClick={handleClick}>
-        {open ? "iconocCerrar" : "iconoMenu"}
+        {open ? "X" : "open"}
       </button>
 
       {open && (

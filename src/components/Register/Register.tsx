@@ -3,9 +3,16 @@ import { NavLink } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 
 const Register = (): JSX.Element => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({ email: "", password: "" });
   const { userRegister } = useUser();
+
+  const handleClick = () => {
+    userRegister(user.email, user.password);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setUser({ ...user, [event.target.id]: event.target.value });
+  };
 
   return (
     <div className="login">
@@ -15,27 +22,21 @@ const Register = (): JSX.Element => {
         <label htmlFor="email">Email</label>
         <input
           id="email"
-          onChange={(event) => setEmail(event.target.value)}
+          onChange={handleChange}
           placeholder="Enter your email"
-          value={email}
+          value={user.email}
           type="email"
         />
 
         <label htmlFor="password">Password</label>
         <input
           id="password"
-          onChange={(event) => setPassword(event.target.value)}
+          onChange={handleChange}
           placeholder="Enter your password"
-          value={password}
+          value={user.password}
           type="password"
         />
-        <button
-          type="button"
-          onClick={(event) => {
-            event.preventDefault();
-            userRegister(email, password);
-          }}
-        >
+        <button type="button" onClick={handleClick}>
           Register
         </button>
       </form>
