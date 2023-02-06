@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Routes, Route, Navigate, NavLink } from "react-router-dom";
 import "./App.css";
+import { useAppSelector } from "./app/hooks";
 import Header from "./components/BurgerMenu/BurgerMenu";
 import { Card } from "./components/Card/Card";
 import { Login } from "./components/Login/Login";
@@ -22,6 +23,7 @@ export interface Productos {
 
 function App() {
   const { articles, dispatch } = useContext(ArticleContext);
+  const { email } = useAppSelector((state) => state.user);
 
   const { getData } = useArticles();
 
@@ -55,6 +57,7 @@ function App() {
             element={
               <div>
                 <h1>Home</h1>
+                {<span>{email ? `User: ${email}` : "No logged"}</span>}
                 <button onClick={handleData}>Get data</button>
                 <button onClick={handleDelete}>Delete data</button>
                 {articles && list}

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Productos } from "../../App";
+import { useAppSelector } from "../../app/hooks";
+import { auth } from "../../Firebase/firebase";
 import "./Card.css";
 
 interface CardProps {
@@ -7,7 +9,7 @@ interface CardProps {
 }
 
 export const Card = ({ article }: CardProps): JSX.Element => {
-  const [login, setlogin] = useState(false);
+  const { isLogged } = useAppSelector((state) => state.user);
   return (
     <section className="card-container">
       <img src={article.image} alt="" width={50} />
@@ -18,17 +20,13 @@ export const Card = ({ article }: CardProps): JSX.Element => {
       <span>{article.category} </span>
       <span>{article.description} </span>
 
-      {login && (
+      {isLogged && (
         <div className="button-container">
           <button>Añadir</button>
           <button>Eliminar</button>
           <button>Editar</button>
         </div>
       )}
-
-      <button onClick={() => setlogin(!login)}>
-        {login ? "Logout" : "Login"}
-      </button>
     </section>
   );
 };
