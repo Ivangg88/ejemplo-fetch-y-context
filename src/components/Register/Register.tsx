@@ -1,28 +1,12 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../../Firebase/firebase";
 import { NavLink } from "react-router-dom";
+import useUser from "../../hooks/useUser/useUser";
 
 const Register = (): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { userRegister } = useUser();
 
-  const registerHandler = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    email: string,
-    password: string
-  ) => {
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("usuario creado", user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  };
   return (
     <div className="login">
       <h1>Register </h1>
@@ -49,7 +33,7 @@ const Register = (): JSX.Element => {
           type="button"
           onClick={(event) => {
             event.preventDefault();
-            registerHandler(event, email, password);
+            userRegister(email, password);
           }}
         >
           Register
