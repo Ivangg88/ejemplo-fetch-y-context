@@ -1,6 +1,9 @@
 import { useContext } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { Card } from "./components/Card/Card";
+import { Login } from "./components/Login/Login";
+import Register from "./components/Register/Register";
 
 import { useArticles } from "./hooks/useArticles";
 import { deleteArticlesActionCreator } from "./store/actions/articlesActions/articlesActions";
@@ -29,7 +32,14 @@ function App() {
     dispatch(deleteArticlesActionCreator());
   };
 
-  return <Card article={tarjeta}></Card>;
+  return (
+    <div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
