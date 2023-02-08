@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAppDispatch } from "../../app/hooks";
 import { auth } from "../../Firebase/firebase";
 import { LoggedUser, loginUserActionCreator } from "../../store/user/userSlice";
@@ -22,9 +23,10 @@ const useUser = () => {
 
       dispatch(loginUserActionCreator(user));
       localStorage.setItem("token", token!);
+      toast.success(`User: ${user.email} logged`);
       navigate("/");
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 
@@ -36,9 +38,9 @@ const useUser = () => {
         password
       );
       const user = userCredential.user;
-      console.log("usuario logueado", user);
-    } catch (error) {
-      console.error(error);
+      toast.success(`User: ${user.email} registered`);
+    } catch (error: any) {
+      toast.error(error.message);
     }
   };
 

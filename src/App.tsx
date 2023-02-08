@@ -1,13 +1,15 @@
-import { useContext } from "react";
 import { Routes, Route, Navigate, NavLink } from "react-router-dom";
 import "./App.css";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
+import ArticlesList from "./components/ArticlesList/ArticlesList";
 import Header from "./components/BurgerMenu/BurgerMenu";
-import { Card } from "./components/Card/Card";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import { useArticles } from "./hooks/useArticles";
 import { deleteArticlesActionCreator } from "./store/articles/articlesSlice";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export interface Productos {
   id: string;
@@ -18,8 +20,7 @@ export interface Productos {
   price: number;
 }
 
-function App() {
-  const articles = useAppSelector((state) => state.articles);
+const App = () => {
   const { email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
 
@@ -33,19 +34,20 @@ function App() {
     dispatch(deleteArticlesActionCreator());
   };
 
-  const list: JSX.Element = (
-    <ul>
-      {articles.map((article) => (
-        <li key={article.id}>
-          <Card article={article} />
-        </li>
-      ))}
-    </ul>
-  );
-
   return (
     <>
-      {" "}
+      <ToastContainer
+        position="top-center"
+        autoClose={1500}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover={false}
+        theme="light"
+      />
       <Header />
       <div style={{ width: "100vh" }}>
         <Routes>
@@ -58,7 +60,7 @@ function App() {
                 {<span>{email ? `User: ${email}` : "No logged"}</span>}
                 <button onClick={handleData}>Get data</button>
                 <button onClick={handleDelete}>Delete data</button>
-                {articles.length ? list : ""}
+                <ArticlesList />
               </div>
             }
           />
@@ -77,6 +79,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;

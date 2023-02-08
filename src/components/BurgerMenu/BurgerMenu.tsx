@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { logOutUserActionCreator } from "../../store/user/userSlice";
 import "./BurgerMenu.css";
@@ -28,7 +29,10 @@ const Header = () => {
           ) : (
             <NavLink
               to={"/"}
-              onClick={() => dispatch(logOutUserActionCreator())}
+              onClick={() => {
+                dispatch(logOutUserActionCreator());
+                toast.success("User logouted");
+              }}
             >
               Logout
             </NavLink>
