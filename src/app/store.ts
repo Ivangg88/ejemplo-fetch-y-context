@@ -19,6 +19,7 @@ export const store = configureStore({
 const rootReducer = combineReducers({
   user: userReducer,
   articles: articleReducer,
+  favourites: favouriteReducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ArticleFromDb } from "../../App";
-import { initialFavourite } from "../../util/data";
+const initialState: ArticleFromDb[] = [];
 
 const favouriteSlice = createSlice({
   name: "favourite",
-  initialState: [initialFavourite],
+  initialState: initialState,
   reducers: {
     loadFavourites: (previousState, action: PayloadAction<ArticleFromDb[]>) =>
       action.payload,
