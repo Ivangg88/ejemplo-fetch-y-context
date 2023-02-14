@@ -37,6 +37,7 @@ const useUser = () => {
         email,
         password
       );
+
       const user = userCredential.user;
       toast.success(`User: ${user.email} registered`);
     } catch (error: any) {

@@ -22,25 +22,28 @@ const Header = () => {
 
       {open && (
         <nav className="navigation-bar">
+          <NavLink to="/">Home</NavLink>
+
           {!isLogged ? (
             <NavLink to={"/login"} title="Login">
               Login
             </NavLink>
           ) : (
-            <NavLink
-              to={"/"}
-              onClick={() => {
-                dispatch(logOutUserActionCreator());
-                toast.success("User logouted");
-              }}
-            >
-              Logout
-            </NavLink>
+            <>
+              <NavLink to="/myarticles">My articles</NavLink>
+              <NavLink
+                to={"/"}
+                onClick={() => {
+                  dispatch(logOutUserActionCreator());
+                  toast.success("User logouted");
+                }}
+              >
+                Logout
+              </NavLink>
+            </>
           )}
 
           <NavLink to={"/register"}> Register</NavLink>
-
-          <NavLink to="/">Home</NavLink>
         </nav>
       )}
     </>

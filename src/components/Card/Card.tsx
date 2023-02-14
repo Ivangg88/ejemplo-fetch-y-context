@@ -1,15 +1,16 @@
-import { useState } from "react";
-import { Productos } from "../../App";
+import { ArticleFromDb, Productos } from "../../App";
 import { useAppSelector } from "../../app/hooks";
-import { auth } from "../../Firebase/firebase";
+import { useArticles } from "../../hooks/useArticles";
 import "./Card.css";
 
 interface CardProps {
-  article: Productos;
+  article: Productos | ArticleFromDb;
 }
 
 export const Card = ({ article }: CardProps): JSX.Element => {
-  const { isLogged } = useAppSelector((state) => state.user);
+  const { isLogged, uid } = useAppSelector((state) => state.user);
+  const { deleteArticle, addFav, getFav } = useArticles();
+
   return (
     <section className="card-container">
       <img src={article.image} alt="" width={50} />
@@ -22,9 +23,18 @@ export const Card = ({ article }: CardProps): JSX.Element => {
 
       {isLogged && (
         <div className="button-container">
-          <button>Añadir</button>
-          <button>Eliminar</button>
-          <button>Editar</button>
+          <button
+            onClick={async () => {
+              addFav(article, uid!);
+              getFav(uid!);
+            }}
+          >
+            Añadir
+          </button>
+
+          <button onClick={async () => deleteArticle(article.id)}>
+            Eliminar
+          </button>
         </div>
       )}
     </section>

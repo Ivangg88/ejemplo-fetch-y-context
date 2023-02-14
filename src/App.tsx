@@ -8,8 +8,9 @@ import Register from "./components/Register/Register";
 import { useArticles } from "./hooks/useArticles";
 import { deleteArticlesActionCreator } from "./store/articles/articlesSlice";
 import { ToastContainer } from "react-toastify";
-
 import "react-toastify/dist/ReactToastify.css";
+import FavouritesList from "./components/FavouritesList/Favourites";
+import ArticleForm from "./components/ArticleForm/ArticleForm";
 
 export interface Productos {
   id: string;
@@ -20,6 +21,11 @@ export interface Productos {
   price: number;
 }
 
+export interface ArticleFromDb extends Productos {
+  name: string;
+  autor: string;
+}
+
 const App = () => {
   const { email } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -27,7 +33,7 @@ const App = () => {
   const { getData } = useArticles();
 
   const handleData = () => {
-    getData("https://fakestoreapi.com/products");
+    getData();
   };
 
   const handleDelete = () => {
@@ -39,13 +45,13 @@ const App = () => {
       <ToastContainer
         position="top-center"
         autoClose={1500}
-        hideProgressBar
-        newestOnTop
+        hideProgressBar={false}
+        newestOnTop={false}
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
         draggable={false}
-        pauseOnHover={false}
+        pauseOnHover
         theme="light"
       />
       <Header />
@@ -60,12 +66,14 @@ const App = () => {
                 {<span>{email ? `User: ${email}` : "No logged"}</span>}
                 <button onClick={handleData}>Get data</button>
                 <button onClick={handleDelete}>Delete data</button>
+                <ArticleForm />
                 <ArticlesList />
               </div>
             }
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/myarticles" element={<FavouritesList />} />
           <Route
             path="*"
             element={

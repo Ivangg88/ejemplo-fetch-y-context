@@ -1,4 +1,4 @@
-import { ArticleFromDb, Productos } from "../App";
+import { Productos } from "../App";
 
 export let articulos: Array<Productos> = [
   {
@@ -11,23 +11,3 @@ export let articulos: Array<Productos> = [
     title: "Bubu",
   },
 ];
-
-export const initialArticle: Productos = {
-  category: "",
-  description: "",
-  id: "",
-  image: "",
-  price: 0,
-  title: "",
-};
-
-export const initialFavourite: ArticleFromDb = {
-  category: "",
-  description: "",
-  id: "",
-  image: "",
-  price: 0,
-  title: "",
-  name: "",
-  autor: "",
-};
